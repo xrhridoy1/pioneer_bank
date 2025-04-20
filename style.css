@@ -1,0 +1,31 @@
+.head-title{
+  padding-top: 100px;
+}
+.login-section{
+  padding: 30px;
+  border-radius: 10px;
+}
+.submit-area{
+  box-shadow: 5px 5px 25px #808080;
+}
+#transitionArea{
+  display: none;
+  padding: 50px;
+}
+.first-section{
+  background-color: #925050;
+  padding: 20px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+.first-line{
+  margin-top: 50px;
+}
+#transitionAreaSecond{
+  display: none;
+}
+.second-line{
+  box-shadow: 5px 5px 15px gray;
+  padding: 30px;
+  border-radius: 10px;
+}
