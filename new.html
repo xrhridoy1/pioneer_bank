@@ -10,7 +10,52 @@
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-  <link rel="stylesheet" href="style.css">
+  <style>
+    .head-title {
+      padding-top: 100px;
+    }
+
+    .login-section {
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .submit-area {
+      box-shadow: 5px 5px 25px #808080;
+    }
+
+    #transitionArea {
+      display: none;
+      padding: 50px;
+    }
+
+    .first-section {
+      background-color: #925050;
+      padding: 20px;
+      border-radius: 10px;
+      color: #ffffff;
+      overflow: auto;
+      white-space: initial;
+    }
+
+    .first-line {
+      margin-top: 50px;
+    }
+
+    #transitionAreaSecond {
+      display: none;
+    }
+
+    .second-line {
+      box-shadow: 5px 5px 15px gray;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .add-money {
+      margin-top: 50px;
+    }
+  </style>
 </head>
 
 <body>
@@ -19,17 +64,17 @@
   </header>
   <main class="container">
     <section id="login-area">
-
+      <!--form section here -->
       <h1 class="text-center head-title">Welcome to pioneer bank</h1>
       <div class="container login-section mt-5 submit-area  bg-body-tertiary">
         <form action="" class="">
           <h3 class="mb-2 text-lg-start text-center">Login</h3>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" >
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" >
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
         </form>
@@ -37,6 +82,9 @@
           <button id="login" class="btn enter-btn btn-outline-success mt-2">Enter</button>
         </div>
       </div>
+      <!--end form section-->
+
+      <!--start second section fro banking system-->
 
     </section>
     <section id="transitionArea">
@@ -73,7 +121,8 @@
               <div class="second-line">
                 <form action="">
                   <h2>Deposit</h2>
-                  <input class="form-control mt-3" type="number"  id="dipositAmount" placeholder="$ Amount you want to deposit">
+                  <input class="form-control mt-3" type="number" id="dipositAmount"
+                    placeholder="$ Amount you want to deposit">
                 </form>
                 <button id="addDeposit" class="btn btn-success mt-3">Deposit</button>
               </div>
@@ -82,16 +131,19 @@
               <div class="second-line">
                 <form action="">
                   <h2>Withdraw</h2>
-                  <input id="WithdrawInput" class="form-control mt-3" type="number"   placeholder="$ Amount you want to Withdraw">
+                  <input id="WithdrawInput" class="form-control mt-3" type="number"
+                    placeholder="$ Amount you want to Withdraw">
                 </form>
                 <button id="WithdrawBtn" class="btn btn-success mt-3">Withdraw</button>
               </div>
-  
+
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!--that end-->
 
 
   </main>
@@ -99,68 +151,51 @@
     <!-- place footer here -->
   </footer>
   <script>
-    const loginBtn = document.getElementById('login');
-    loginBtn.addEventListener('click', () => {
-      let loginArea = document.getElementById('login-area');
-      loginArea.style.display = 'none'
-      let transitionArea = document.getElementById('transitionArea');
-      transitionArea.style.display = 'block'
+    document.getElementById('login').addEventListener('click', () => {
+      const loginAreaHidden = document.getElementById('login-area');
+      loginAreaHidden.style.display = 'none'
+      const transition = document.getElementById('transitionArea')
+      transition.style.display = 'block';
+    });
+
+    // add money on diposit and blance
+
+    const dipositFirstLine = document.getElementById('addDeposit')
+    dipositFirstLine.addEventListener('click', () =>{
+      let diposit = dipositMoney('dipositAmount');
+
+      spanNumberAdded('depositAdded', diposit);
+      spanNumberAdded('currentBlance', diposit)
+
+      document.getElementById('dipositAmount').value ='';
     })
 
+    // money add on withdraw and money cut from blance 
 
-    //function for add money on deposit and blance 
+    const WithdrawFirstLine = document.getElementById('WithdrawBtn');
+    WithdrawFirstLine.addEventListener('click', () => {
+      const withdrawAmount = dipositMoney('WithdrawInput');
 
-    function updateSpan (id, addmoney){
-      const amount = document.getElementById(id).innerText;
-      const amountNumber = parseFloat(amount);
-      const totalAmount = amountNumber + addmoney ;
-      document.getElementById(id).innerHTML = totalAmount;
-    }
-
-    const depositBtn = document.getElementById('addDeposit');
-    depositBtn.addEventListener('click', () =>{
-      const dipositMoney = document.getElementById('dipositAmount').value;
-      const addmoney = parseFloat(dipositMoney);
-
-      
-
-      // const depositAdded = document.getElementById('depositAdded').innerText;
-      // const depositAddedNumber = parseFloat(depositAdded);
-      // const totalAmount = depositAddedNumber + addmoney;
-      // document.getElementById('depositAdded').innerText = totalAmount;
-      updateSpan('depositAdded', addmoney)
-
-
-      updateSpan('currentBlance', addmoney)
-      // const currentBlance = document.getElementById('currentBlance').innerText;
-      // const currentBlanceNumber = parseFloat(currentBlance);
-      // const totalBlance = addmoney + currentBlanceNumber ;
-      // document.getElementById('currentBlance').innerText = totalBlance;
-
-
-      document.getElementById('dipositAmount').value = '';
-
-    })
-
-    const Withdraw = document.getElementById('WithdrawBtn');
-    Withdraw.addEventListener('click', () =>{
-      const input = document.getElementById('WithdrawInput').value;
-      const withdrawAdded = parseFloat(input);
-      // updateSpan('withdrawStor', withdrawAdded)
-
-      const withdrawStor = document.getElementById('withdrawStor').innerText;
-      const addedWithdraw = parseFloat(withdrawStor);
-      const totalWithdraw = withdrawAdded + addedWithdraw;
-      document.getElementById('withdrawStor').innerText = totalWithdraw;
-
-      const currentBlance = document.getElementById('currentBlance').innerText;
-      const currentBlanceNumber = parseFloat(currentBlance);
-      const totalBlance = currentBlanceNumber - withdrawAdded;
-      document.getElementById('currentBlance').innerText = totalBlance;
-
+      spanNumberAdded ('withdrawStor', withdrawAmount);
+      spanNumberAdded ('currentBlance', -1 * withdrawAmount);
 
       document.getElementById('WithdrawInput').value = '';
     })
+
+    //function for input field to convert number 
+    function dipositMoney(inputId) {
+      let input = document.getElementById(inputId).value;
+      let addMoney = parseFloat(input);
+      return addMoney;
+    }
+
+    // function for money .............
+    function spanNumberAdded(id, addNumber) {
+      const amount = document.getElementById(id).innerText;
+      const amountNumber = parseFloat(amount);
+      const totalAmount = addNumber + amountNumber;
+      document.getElementById(id).innerHTML = totalAmount;
+    }
   </script>
 
   <!-- Bootstrap JavaScript Libraries -->

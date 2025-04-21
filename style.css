@@ -17,6 +17,8 @@
   padding: 20px;
   border-radius: 10px;
   color: #ffffff;
+  overflow: auto;
+  white-space:initial;
 }
 .first-line{
   margin-top: 50px;
