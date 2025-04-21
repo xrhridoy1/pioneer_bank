@@ -161,13 +161,13 @@
     // add money on diposit and blance
 
     const dipositFirstLine = document.getElementById('addDeposit')
-    dipositFirstLine.addEventListener('click', () =>{
+    dipositFirstLine.addEventListener('click', () => {
       let diposit = dipositMoney('dipositAmount');
 
       spanNumberAdded('depositAdded', diposit);
       spanNumberAdded('currentBlance', diposit)
 
-      document.getElementById('dipositAmount').value ='';
+      document.getElementById('dipositAmount').value = '';
     })
 
     // money add on withdraw and money cut from blance 
@@ -176,8 +176,8 @@
     WithdrawFirstLine.addEventListener('click', () => {
       const withdrawAmount = dipositMoney('WithdrawInput');
 
-      spanNumberAdded ('withdrawStor', withdrawAmount);
-      spanNumberAdded ('currentBlance', -1 * withdrawAmount);
+      spanNumberAdded('withdrawStor', withdrawAmount);
+      spanNumberAdded('currentBlance', -1 * withdrawAmount);
 
       document.getElementById('WithdrawInput').value = '';
     })
